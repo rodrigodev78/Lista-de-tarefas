@@ -1,23 +1,28 @@
-const ul = document.querySelector("ul");
-
-function addList(e){
-    const newLi = document.createElement("li");
+function addNaLista(e){
+    const ul = document.querySelector("ul");
+    const novoLi = document.createElement("li");
 
     if(e.key === "Enter" && input.value == ""){
         alert("Digite algo na lista de tarefas");
     } else if(e.key === "Enter"){
-        newLi.innerText = input.value;
-        ul.appendChild(newLi);
+        novoLi.innerText = input.value;
+
+        const botaoRemover = document.createElement("button");
+        botaoRemover.innerHTML = "Excluir item";
+        botaoRemover.addEventListener("click", () =>{
+            ul.removeChild(novoLi);
+        });
+
+        novoLi.appendChild(botaoRemover);
+        ul.appendChild(novoLi);
         input.value = "";
     }
 }
 
-function removeList(){
+function removerDaLista(){
+    const ul = document.querySelector("ul");
     ul.removeChild(ul.lastElementChild);
 }
  
 const input = document.querySelector("input");
-input.addEventListener("keyup", addList);
-
-const botao = document.querySelector("button");
-botao.addEventListener("click", removeList);
+input.addEventListener("keyup", addNaLista);
